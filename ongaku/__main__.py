@@ -20,24 +20,43 @@
 
 """
 
-import logging
+import asyncio
+import sys
 
-from ongaku.looper import loop_, reset_bio
+from pyrogram import idle
+from ub_core import Config, bot
 
-from ongaku import ongaku
-
-logging.basicConfig(level=logging.ERROR)
-
-
-async def boot():
-    # importlib.import_module("bot.plugins.commands")
-    await loop_()
-
+from ongaku import extra_config
 
 if __name__ == "__main__":
-    try:
-        ongaku.start()
-        ongaku.run(boot())
-    except KeyboardInterrupt:
-        ongaku.run(reset_bio(restart=False))
-        print("\nOngaku: Stopped")
+
+    async def boot():
+        print(extra_config.MediaPlayer.KEEP_ALIVE_STR)
+
+        await bot.start()
+        print(
+            "Ongaku: Started\nOngaku: Notifications are checked every 30 seconds\n        "
+            "to avoid spamming the API(s)."
+            "\nOngaku: Send .sync in any chat to force notification detection."
+            "\n\nNow Playing:"
+        )
+
+        await asyncio.to_thread(bot._import)
+
+        await asyncio.gather(*Config.INIT_TASKS)
+        Config.INIT_TASKS.clear()
+
+        await bot.log_text(text="<i>Started</i>")
+
+        await idle()
+
+        extra_config.MediaPlayer.WORKER_TASK.cancel()
+        print("Ongaku: Bio has been restored to original.\nOngaku: Stopped")
+        await bot.update_profile(bio=extra_config.ORIGINAL_BIO)
+
+        await bot.log_text(text="Ongaku: Stopped")
+        await bot.shut_down()
+
+        sys.exit(bot.exit_code)
+
+    bot.run(boot())

@@ -1,0 +1,29 @@
+#!/usr/bin/env bash
+
+ongaku_workdir=""
+
+cd "${ongaku_workdir}"
+
+[[ ! -f "config.env" ]] && echo -e "config.env not found.\nrun 'cd ${ongaku_workdir} && ./scripts/create_config.py'" && exit
+
+[[ $(uname -o) == "Android" ]] &&	termux=1
+
+[[ -n $(getprop ro.miui.ui.version.name) ]] && echo -e "Termux: MIUI device detected\nTermux: Ongaku is unsupported!\nTermux: Please check README.md for more details"
+
+echo "Checking for updates"
+
+git fetch && git pull
+
+source venv/bin/activate
+
+[[ $termux -eq 1 ]] && echo -e "Termux: Acquiring wakelock" && termux-wake-lock
+
+while true; do
+    python3 -m ongaku
+    [[ $? -ne 69 ]] && break 
+done
+
+deactivate
+
+[[ $termux -eq 1 ]] && echo -e "Termux: Releasing wakelock" && termux-wake-unlock
+

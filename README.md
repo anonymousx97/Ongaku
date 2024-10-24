@@ -8,10 +8,10 @@ A **smol and fluffy** bot to update your telegram bio with music playing around 
 ### Getting started
 
 * Install [Termux](https://f-droid.org/en/packages/com.termux/) and [Termux:API](https://f-droid.org/en/packages/com.termux.api/) apps from F-Droid.
-* Launch Termux and run the following commands
+* Launch Termux and run the following command
 
 ```
-apt update && apt dist-upgrade -y && apt update && apt install -y git nano python python-pip termux-api && chmod -w /data/data/com.termux/files/usr/libexec/termux-am/am.apk && git clone https://github.com/likeadragonmaid/Ongaku && cd ongaku && pip install virtualenv && virtualenv venv --system-site-packages && source venv/bin/activate && pip install -r requirements.txt && deactivate && cd .. && termux-notification-list
+bash -c "$(curl -fsSL https://raw.githubusercontent.com/anonymousx97/Ongaku/main/scripts/installation.sh)"
 ```
 
 Optionally you can also add neofetch support by running
@@ -21,6 +21,7 @@ apt install -y neofetch python-pillow
 ```
 
 You will be asked to provide notification access to Termux:API app. You must provide Termux:API app all the required permissions. You may be required to do `Ctrl+C` to continue.
+> On A13 and above you might need to allow restricted setting permission to the api before allowing notification access.
 
 * When you run the Ongaku for the first time you are asked to enter your phone number to create a session. Ongaku uses this session to work with your telegram account.
 
@@ -52,7 +53,7 @@ Use `Ctrl+X` to exit and save your changes.
 
 Use `Ctrl+X` to exit and save your changes.
 
-* Run `./launch` inside `ongaku` directory once again.
+* Run `ong` from any directory to start Ongaku.
 
 * If this is your first time launching Ongaku then you will be asked to enter your phone number to login. Next launches will work without having to re-login.
 
@@ -85,6 +86,7 @@ Send in any DM or Group chat
 ### Authors
 * [Shoko](https://github.com/likeadragonmaid)
 * [Ryuk](https://github.com/anonymousx97)
+* [Meliodas](https://github.com/thedragonsinn)
 
 ### Disclaimer
 
