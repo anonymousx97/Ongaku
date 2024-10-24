@@ -12,9 +12,9 @@ git clone https://github.com/likeadragonmaid/Ongaku
 
 cd Ongaku
 
-sed -i "s%ongaku_workdir=.*%ongaku_workdir=$(pwd)%" ong
+sed -i "s%ongaku_workdir=.*%ongaku_workdir=$(pwd)%" "scripts/ong"
 
-cp ong "${PATH}"
+cp "scripts/ong" "${PATH}"
 
 pip install virtualenv
 virtualenv venv --system-site-packages

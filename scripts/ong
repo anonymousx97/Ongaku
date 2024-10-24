@@ -6,7 +6,7 @@ cd "${ongaku_workdir}"
 
 [[ ! -f "config.env" ]] && echo -e "config.env not found.\nrun 'cd ${ongaku_workdir} && ./scripts/create_config.py'" && exit
 
-[[ $(uname -o) == "Android" ]] &&	termux=1
+[[ $(uname -o) == "Android" ]] && termux=1
 
 [[ -n $(getprop ro.miui.ui.version.name) ]] && echo -e "Termux: MIUI device detected\nTermux: Ongaku is unsupported!\nTermux: Please check README.md for more details"
 
