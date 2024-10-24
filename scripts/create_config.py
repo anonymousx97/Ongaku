@@ -76,7 +76,7 @@ CMD_TRIGGER=.
 
 # • Trigger for bot, Defaults to "."
 
-LOG_CHAT={log_chat}
+LOG_CHAT={log_chat.id}
 
 # • Channel ID for receiving Ongaku logs
 
