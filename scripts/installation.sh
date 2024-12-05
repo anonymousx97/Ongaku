@@ -14,7 +14,7 @@ cd Ongaku
 
 sed -i "s%ongaku_workdir=.*%ongaku_workdir=$(pwd)%" "scripts/ong"
 
-cp "scripts/ong" "${PATH}"
+cp "scripts/ong" "/data/data/com.termux/files/usr/bin"
 
 pip install virtualenv
 virtualenv venv --system-site-packages
