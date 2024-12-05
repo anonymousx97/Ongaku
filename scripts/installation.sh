@@ -8,7 +8,7 @@ apt install -y git nano python python-pip termux-api
 
 chmod -w /data/data/com.termux/files/usr/libexec/termux-am/am.apk
 
-git clone https://github.com/likeadragonmaid/Ongaku
+git clone https://github.com/anonymousx97/Ongaku
 
 cd Ongaku
 
